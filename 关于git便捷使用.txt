@@ -1,0 +1,6 @@
+如果我们已经上传过一次git  那我们的项目文件夹下就会有一个.git文件夹   
+理论上会记录下我们曾经的操作  例如  git init  git remote add origin 之类的指令  这也就意味着
+我们再次上传代码的时候就无需在init  和 remote  add 了  否则  
+远程仓库存在报错fatal: remote origin already exists     那我们还需要git remote rm origin 
+所以依次类推  我们再次上传代码时可以直接  add . 之后就可以pull 和push了  具体是否成功  自己试试就可以知道  
+go
