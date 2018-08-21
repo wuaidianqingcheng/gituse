@@ -4,3 +4,6 @@
 远程仓库存在报错fatal: remote origin already exists     那我们还需要git remote rm origin 
 所以依次类推  我们再次上传代码时可以直接  add . 之后就可以pull 和push了  具体是否成功  自己试试就可以知道  
 go
+
+事实证明  仅仅add还是不够的  此时我们需要git commit -m 一个提交信息 
+以此来分清你和队友提交代码的顺序和分工  
