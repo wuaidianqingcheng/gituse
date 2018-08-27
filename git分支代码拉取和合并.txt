@@ -1,0 +1,24 @@
+关于git代码的拉取和合并
+
+上午已经大致说过了git分支的创建  也很简单  不过是简单的  git  branch 和git checkout  然后push自己创建的分支名
+晚上再来简单的试一下git代码分支的拉取 
+
+刚才自己做了一个简单的测试   我在本地创建了一个文件  但是git clone 的时候仍然是下载了主分支master的代码  虽然我在git中选定的wh子分支 
+突然感到迷惑  上网搜了一下  有一个简单的办法  仅限于没有clone之前
+1.git clone -b 分支名 git项目地址  嗯  就是这么简单
+当然如果你已经clone了代码  那么我就不会了  告诉你一个网站  www.baidu.com  0.0
+我们将代码down下来之后  做了修改  就需要提交   提交也是一样  之前在简易操作中有说过
+git add .
+git commit  -m '提交信息'
+git push origin wh（子分支名）
+
+下面简单的聊一下git分支合并的操作
+
+嗯  假设我们有A和B两个分支
+此时我们想要将A分支的代码合并到B分支上去
+此处应 git add .
+git commit -m '123'
+git rebase B  一定要注意  此处操作要在A分支下git操作
+反之亦然 在B下  git rebase A  就能把B分支的代码合并到A项目中   具体细节试试再说  不行接着修改
+
+
