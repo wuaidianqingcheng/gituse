@@ -1,0 +1,44 @@
+我们大部分时间可能会遇到某些切换效果·  例如轮播图了，table切换啦 很多很多
+本次不列举方法只列举思想
+假设有一个列表  里面有四个li
+分别对应下方的四个div  
+点击某个li 实现对应div的显示，且其他div隐藏状态
+嗯  既然这样  那就针对于每一个li绑定一个属性  属性值不同
+然后把属性值赋值给对应的div上面
+接下来就是点击判断 拿到li属性值是否与div属性值相同
+如果相同就做效果展示
+相应的  除了点击的元素外 其他元素对应的div全部是隐藏状态
+代码js附上
+
+$('.case_menu').children('a').each(function(){
+		$(this).on('click',function(){			
+			var num = $(this).attr('data_list');
+
+			//解决上下方点击
+			$('.suc_case').children().eq(0).css({'background':"#01ab79",'color':'white'})
+			$('.case_menu').children().eq(0).removeAttr('style');
+
+			//md产品轮播
+			$('.data_intro').find('.data_wrap').each(function(){
+				if($(this).attr('id')!= 'undefind' && num == $(this).attr("id")){
+					$('#'+num).css('display','block');
+					var $that = $(this);
+					$('.data_intro').find('.data_wrap').each(function(){
+						$(this).not($that).css('display','none')
+						
+					})
+				}
+			})
+			//成功案列iebug
+			$('.auto').find('.case_list').each(function(){
+				if($(this).attr('id')!= 'undefind' && num == $(this).attr("id")){
+					$('#'+num).css('display','block');
+					var $that = $(this);
+					$('.auto').find('.case_list').each(function(){
+						$(this).not($that).css('display','none')
+						
+					})
+				}
+			})
+		})
+	})
