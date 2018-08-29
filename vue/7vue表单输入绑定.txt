@@ -1,0 +1,107 @@
+上节简单说了vue的事件处理
+这节聊聊vue的表单输入绑定
+ 
+基础用法  
+我们在初始中谈到v-model可以用来实现vue的数据的双向绑定，数据更新，视图随之更新，反之亦然。v-model的原理就像是在input框上绑定了一个onchange事件，当文本框的值更新时，我们可以实时更新的数据，数据更新后触发函数调用，函数中触发视图更新的方法，然后视图更新
+v-model的本质上不过是语法糖，他负责监听用户的输入事件以监听数据，并对一些极端场景进行一些特殊处理
+
+v-model会忽略所有表单的value，checked，selected特性的初始值，而总是将vue实例的数据作为数据来源，所以我们应该在组件的data选项中声明初始值
+
+文本
+v-model可以绑定文本框上  动态获取文本框的值来更新DOM
+形如
+<input v-mode='item' />
+<p>{{item}}</p>
+
+多行文本
+<span>Multiline message is:</span>
+<p style="white-space: pre-line;">{{ message }}</p>
+<br>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
+在文本区域插值（<textarea></textarea>）并不会生效，应用v-model代替
+
+复选框
+v-model绑定单个复选框时可以绑定boolean值
+<input type="checkbox" id="checkbox" v-model="checked">
+<label for="checkbox">{{ checked }}</label>
+v-model绑定多个复选框，绑定到同一个数组：
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
+new Vue({
+  el: '#example-3',
+  data: {
+    checkedNames: []
+  }
+})
+
+单选按钮
+v-model绑定单选按钮是绑定的value
+<div id="example-4">
+  <input type="radio" id="one" value="One" v-model="picked">
+  <label for="one">One</label>
+  <br>
+  <input type="radio" id="two" value="Two" v-model="picked">
+  <label for="two">Two</label>
+  <br>
+  <span>Picked: {{ picked }}</span>
+</div>
+new Vue({
+  el: '#example-4',
+  data: {
+    picked: ''
+  }
+})
+
+选择框
+
+单选时
+<div id="example-5">
+  <select v-model="selected">
+    <option disabled value="">请选择</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
+new Vue({
+  el: '...',
+  data: {
+    selected: ''
+  如果v-model表达式的初始值未能匹配任何选项，select元素将被渲染为未选中状态。在ios中，这会使用户无法选择第一个选项。因为这样的情况下ios不会触发change事件，因为更推荐上面这样提供一个值为空的禁用选项 <option disabled value="">请选择</option>
+
+多选时（绑定到一个数组）
+<div id="example-6">
+  <select v-model="selected" multiple style="width: 50px;">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <br>
+  <span>Selected: {{ selected }}</span>
+</div>
+new Vue({
+  el: '#example-6',
+  data: {
+    selected: []
+  }
+
+修饰符
+.lazy  在change是而非input时更新
+默认情况下v-model在每次input事件触发后将输入框的值与数据进行同步。你可以添加lazy修饰符，从而转变为使用change事件进行同步
+.number   自动将文本框输入的值转为数值类型  
+这个很有用，因为即使在type=‘number’时，HTML输入元素的值也总会返回字符串。
+
+.trim  过滤首尾空白字符
+
+ 
+
+

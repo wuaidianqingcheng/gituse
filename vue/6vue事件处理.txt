@@ -1,0 +1,95 @@
+上节简单的说了vue的列表渲染  
+这节说下vue的事件处理
+
+v-on 监听事件
+vue中可以用v-on指令监听DOM事件，可以在事件触发时运行js带代码  代码可以写在click后面，也可以写在方法中
+形如
+<div id='app'>
+<button v-on:click='count+=1'>+1</button>
+<p>{{count}}</p>
+</div>
+var app = new Vue({
+el:"#app",
+data:{
+count:0
+}
+})
+但是像上面这种写法并不方便维护和迭代，所以我们一般为v-on提供一个可以调用的方法名称
+形如
+<button v-on:click='text'></button>
+methods:{
+text:function(){
+console.log('1111')
+}
+}
+除了直接绑定方法，还可以直接调用方法传参
+形如
+<button v-on:click='wh('我是')'></button>
+methods:{
+wh:function(txt){
+console.log(txt+'中国人')
+}
+}
+如果需要在内联语句处理器访问原始的DOM事件，可以用特殊变量$event
+
+事件修饰符
+
+在事件处理程序中我们调用event.preventDefault()或event.stopPropagation()是非常常见的需求。尽管我们可以在方法中轻松实现这点，
+但更好的方式是：方法只有纯粹的数据逻辑，而不是去处理DOM事件细节
+为了解决这个问题，vue提供了事件修饰符 他们是一些由点开头的指令后缀
+.stop  阻止事件继续传播 （冒泡）
+.prevent  阻止事件默认行为
+.capture  事件捕获机制 
+.self  只有当event.target时当前元素自身时触发处理函数
+.once 只触发一次
+.passive  立即执行
+
+同样的修饰符的顺序很重要  顺序不同，所代表的含义也不同
+v-on:click.prevent.self 阻止所有点击
+v-on:click.self.prevent 只阻止对元素自身的点击
+
+按键修饰符
+在监听键盘事件时，我们经常需要检查常见的键值。vue允许为v-on在监听键盘事件时添加按键修饰符，但是因为keyCode比较多，
+所以vue提供了常见的按键修饰符别名
+.enter
+.tab
+.delete
+.esc
+.space
+.up
+.down
+.left
+.right
+还可以通过全局config.keyCodes对象自定义按键修饰符别名
+Vue.config.keyCodes.f1 = 112;
+
+系统修饰键
+.ctrl
+.alt
+.shift
+.meta
+
+
+.exact修饰符允许你控制由精确的系统修饰符组合触发的事件
+形如（文档案例）
+<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- 没有任何系统修饰符被按下的时候才触发 -->
+<button @click.exact="onClick">A</button>
+
+鼠标按钮修饰符
+.left
+.right
+.middle
+
+
+关于为什么在HTML中监听事件
+所有的vue.js事件处理方法和表达式都严格绑定在当前视图的viewmodel上，它不会导致任何维护上的困难。
+使用v-on的好处：
+1：扫一眼HTML模板就能轻松定位在js代码里对应的方法
+2：因为你无须在js里手动绑定事件，你的viewmodel代码可以是很纯粹的逻辑，和DOM完全解耦，更易于测试
+3：当一个viewModel被销毁时，所有的事件处理器都会自动被删除。你无须担心如何清理他们

@@ -72,3 +72,24 @@ txt:"2"
 理想的key值是每项都有的且唯一的id，并且需要利用v-bind绑定动态值
 
 所以在我们使用v-for时尽可能的提供key，除非遍历输出的DOM内容非常简单，或者刻意依赖默认行为以获取性能上的提升
+但是key是vue识别节点的一个通用机制，所以key并不与v-for特别关联，其他地方也有用到的地方
+
+数组更新检测
+vue也包含一组观察数组的变异方法，这些方法也会触发视图更新；
+push(),pop(),shift(),unshift(),splice(),sort(),reverse(),方法如其意，不做赘述
+所谓的变异方法其实就是会改变被这些方法调用的原始数组，简言之就是改变原始数组 
+也有一些非变异的方法 filter(),concat(),slice()
+
+但是由于js的限制，vue不能检测以下变动的数组 
+1：当你利用索引直接设置一个项时
+2：当你修改数组的长度时
+遇到这种问题时，我们可以使用vue.set, vm.$set
+
+由于js的限制，vue不能检测对象属性的添加或删除
+对于已经创建的实例，vue不能动态添加根级别的响应式属性，但是可以使用Vue.set(obj,key,value)方法向嵌套对象添加响应式属性
+如果需要为已有对象赋予多个新属性，可以用Object.assign()或者_.extend()
+形如
+vm.userProfile = Object.assign({}, vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
