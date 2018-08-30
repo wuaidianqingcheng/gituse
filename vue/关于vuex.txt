@@ -1,0 +1,133 @@
+关于vue配套的状态管理器-vue
+
+vuex下载安装有多种方式
+cdn引用，需要注意的是要在vue之后引用才可以
+npm安装  npm i vuex -S
+vue-cli生成的脚手架中  我们需要
+import Vuex from 'vuex' 
+Vue.use(vuex)
+由于Vuex依赖于Promise，如果你支持浏览器并没有实现promise，你可以使用一个polyfill ==》es6-promise
+
+
+vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生改变。换言之，vuex可以解决vue多个组件之间状态值共享的问题
+new Vue({
+  // state
+  data () {
+    return {
+      count: 0
+    }
+  },
+  // view
+  template: `
+    <div>{{ count }}</div>
+  `,
+  // actions
+  methods: {
+    increment () {
+      this.count++
+    }
+  }
+})
+这个状态自管理应用包含以下几个部分：
+state，驱动应用的数据源
+view，以声明方式将state映射到视图；
+actions，响应view上用户输入导致的状态变化。
+单向数据流其实很好解释  用户的输入导致状态的变化，，状态的变化触使数据的更新，数据的更新引发视图的再次渲染
+
+但是当我们的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：
+1：多个视图依赖于同一状态:
+2：来自不同视图的行为需要变更同一状态
+其实就像公交车   如果我们想从一个地点到达另一个地点，可能会需要坐公交，转地铁，骑小黄车 最后才能实现
+我们何不抽离出来相同的路线  直接打的过去呢
+或者说是 我们需要一个在全局环境下的状态管理器，可以实现改变某一个状态，实现多个视图的更新
+这就是vuex的基本思想，借鉴了flux，redux和the elm Architecture。与其他模式不同的是，vuex是专门为vue.js设计的状态管理库，以利用vue.js的细粒度数据响应机制来进行更高效的状态更新
+
+虽然vuex可以帮助我们管理状态，但是也附带了更多的概念的框架。
+如果不打算开发大型的单页应用，那么久不要使用vuex
+
+
+开始
+每一个vuex的应用的核心就是store。store基本上就是一个仓库，也是一个容器，它包含这我们应用中大部分的状态。
+vuex和单纯的全局对象有两点不同：
+1：vuex中的状态存储是响应式的。当vue组件从store中读取状态时，如果store中的状态改变，相应组件也会相应地得到高效更新
+2：我们并不能直接直接改变store的状态。改变store中的状态的唯一途径就是显式的提交mutation。这样使得我们可以方便的跟踪每一个状态的变化，从而让我们能够实现一些工具帮助我们更好的了解我们的应用
+const store =new Vuex.store({
+state:{
+data:0
+},
+mutations:{
+add(state){
+state.data++;
+}
+}
+}) 
+现在我们可以通过store.state来获取状态对象，以及通过store.commit方法触发状态变更
+store.commit('increment')  由此可见  所谓的显式提交mutation其实就是commit mutation中定义的方法名称
+
+State
+vuex使用单一状态树，用一个对象就包含了全部的应用层级状态。每一个应用将仅仅包含一个store实例。单一状态树让我们能够直接的定位任以特定的状态片段，在调试的过程中也能轻易地取得整个当前应用状态的快照
+由于vuex的状态存储是响应式的，从store实例中读取状态最简单的方法就是在计算属性中返回某个状态  
+computed:{
+con(){
+return store.state.data
+}
+}
+每一次的store.state.count变化的时候，都会重新求取计算属性，并且触发更新相关联的DOM
+但是这种模式导致组件依赖全局状态单例，在模块化的构建系统中，在每一个需要使用state的组件中需要频繁地导入，并且在测试组件时需要模拟状态
+vuex通过store选项，提供了一种机制将状态从根组件注入到每一个子组件中  
+当我们调用Vue.use(Vuex)后  在vue的根实例下面注入store选项，这样就可以把store的实例注入所有的子组件当中，
+如此每一个子组件都能通过this.$store访问到
+const app = new Vue({
+  el: '#app',
+  // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
+  store,
+  components: { Counter },
+  template: `
+    <div class="app">
+      <counter></counter>
+    </div>
+  `
+})
+const Counter = {
+  template: `<div>{{ count }}</div>`,
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
+  }
+}
+mapState辅助函数
+当一个组件需要获取多个状态时，将这些状态都声明为计算属性会有些过于复杂和冗余。为了解决这个问题，我么可以使用mapState辅助函数帮助我们生成计算属性
+import { mapState } from 'vuex'
+
+export default {
+  // ...
+  computed: mapState({
+    // 箭头函数可使代码更简练
+    count: state => state.count,
+
+    // 传字符串参数 'count' 等同于 `state => state.count`
+    countAlias: 'count',
+
+    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+}
+当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组。
+
+computed: mapState([
+  // 映射 this.count 为 store.state.count
+  'count'
+])
+# 对象展开运算符
+mapState 函数返回的是一个对象。我们如何将它与局部计算属性混合使用呢？通常，我们需要使用一个工具函数将多个对象合并为一个，以使我们可以将最终对象传给 computed 属性。但是自从有了对象展开运算符（现处于 ECMASCript 提案 stage-4 阶段），我们可以极大地简化写法：
+
+computed: {
+  localComputed () { /* ... */ },
+  // 使用对象展开运算符将此对象混入到外部对象中
+  ...mapState({
+    // ...
+  })
+}
