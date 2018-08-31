@@ -13,3 +13,12 @@ git 分支创建和切换使用
 6.接下来我们需要把分支切换到我们需要操作的分支上面  所以  git checkout wh  切换到wh分支上  
 7.接着git  remote add origin ‘git 项目地址’
 8.git push origin wh 记住  此地不是master  因为不是主分支操作  所以不是master
+
+有的时候分支太多  就需要我们进行分支代码管理啦 但是有的分支可能是我们不需要的  此时我们可以进行删除分支
+首先git branch 
+删除本地分支
+git branch -D 分支名  -D ===--delete/-d
+删除本地的远程分支
+git branch -r -D origin/分支名
+删除远程git服务器上的分支
+git push origin -d 分支名
