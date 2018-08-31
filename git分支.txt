@@ -18,6 +18,7 @@ git 分支创建和切换使用
 首先git branch 
 删除本地分支
 git branch -D 分支名  -D ===--delete/-d
+但是由于git命令区分大小写  他们所有完整的写法都是--delete  所以推荐--delete
 删除本地的远程分支
 git branch -r -D origin/分支名
 删除远程git服务器上的分支
