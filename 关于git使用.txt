@@ -22,9 +22,19 @@
 
 
 
-***关于下载项目  建议 直接配置ssh密钥吧  这个比较简便   git clone +项目的git地址  或者是http  或者是ssh  嗯关于ssh的获取方法   
-暂时分两种吧   1：你可以随便建个文件夹  只要你安装有git  那就鼠标右键 git gui  help里面有一个show ssh key  点开复制再去配置就可以了
+***关于下载项目  
+想要使用git我们就首先要让自己的账户与git仓库链接  或者是自己当前使用的电脑与git仓库链接
+账户链接：git config –global user.name ‘xxxxx’ 
+git config –global user.email ‘xxx@xx.xxx’
+电脑链接 ：ssh
+关于ssh  获取  打开git bash  cd ~/.ssh 如果可以进去该文件就证明以前有配置过，如果进不去那就是没有配置过  、
+输入指令 ssh-keygen -t rsa -C ‘git邮箱’ 连点三下enter键 生成密钥  然后就可以去寻找自己生成的密钥了
+
+建议 直接配置ssh密钥吧  这个比较简便   git clone +项目的git地址  或者是http  或者是ssh  嗯关于ssh的获取方法   
+暂时分3种吧   1：你可以随便建个文件夹  只要你安装有git  那就鼠标右键 git gui  help里面有一个show ssh key  点开复制再去配置就可以了
 	      2：你可以去c盘  一般在c盘  但也不确定   C盘user文件夹  有时也叫用户文件夹里面的admin  admin/.ssh 找到这个文件夹点开里面的id_rsa即可
+	      3：在git bash 下输入cat ~/.ssh/id_rsa.pub 然后复制粘贴
+三种都可以实现  前往git仓库中配置ssh
 嗯，最后声明一点  关于ssh的配置其实我自身感觉它是为了让我们在操作git的过程中需要输入email和密码时自动忽略该选项！
 嗯，其实可以理解为远程仓库和你的电脑之间有一扇门，验证邮箱和密码就是钥匙，ssh也是钥匙  只不过 邮箱和密码是自己设置的  ssh是电脑本身生成的 
 ***有时遇到某些报错或者无法解决的bug时  可以rm -rf .git
@@ -33,7 +43,7 @@
 fatal: remote origin already exists   简单提供一种方法   git remote rm origin  因为报错的原因就在于远程仓库已经存在  所以就先删除远程仓库后再重新git remote add origin
  vi .git/config   把 [remote “origin”] 那一行删掉就好了
 
-  当出现下面这行报错时我们需要先合并一下请求再push  git pull --rebase origin master
+当出现下面这行报错时我们需要先合并一下请求再push  git pull --rebase origin master
  failed to push some refs to 'git@github.com:wuaidianqingcheng/success.git
 
 当出现下面的这个错误的时候
