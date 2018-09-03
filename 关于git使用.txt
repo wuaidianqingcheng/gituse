@@ -44,5 +44,10 @@ origin  git@github.com:wuaidianqingcheng/success.git (push)
 一个为push 一个为fetch   此时  我们需要git remote set-url origin '你的项目地址'
 之后重新pull push， 即可
 
+有时我们git  push origin master 或者git的pull时候 
+当报错git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+极有可能是我们的密钥错误  从新打开密钥文件  或者重新生成密钥  复制粘贴进去  重新push  即可
+
 
 
