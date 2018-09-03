@@ -36,25 +36,23 @@ git config –global user.email ‘xxx@xx.xxx’
 	      3：在git bash 下输入cat ~/.ssh/id_rsa.pub 然后复制粘贴
 三种都可以实现  前往git仓库中配置ssh
 嗯，最后声明一点  关于ssh的配置其实我自身感觉它是为了让我们在操作git的过程中需要输入email和密码时自动忽略该选项！
-嗯，其实可以理解为远程仓库和你的电脑之间有一扇门，验证邮箱和密码就是钥匙，ssh也是钥匙  只不过 邮箱和密码是自己设置的  ssh是电脑本身生成的 
+嗯，其实可以理解为远程仓库和你的电脑之间有一扇门，验证邮箱和密码就是钥匙，ssh也是钥匙  只不过 邮箱和密码是自己的独有的  ssh是电脑本身生成的  这也就意味着 如果你设置ssh后不删除  任何人来到你的电脑上都可以使用git来进行与任何git仓库的交互
 ***有时遇到某些报错或者无法解决的bug时  可以rm -rf .git
 关于git使用过程中部分报错情况
-
-fatal: remote origin already exists   简单提供一种方法   git remote rm origin  因为报错的原因就在于远程仓库已经存在  所以就先删除远程仓库后再重新git remote add origin
+1：需要注意的是如果我们能确保仓库中没有任何人修改并提交过代码  那我们上传代码时就不需要git pull 但是如果有人提交过 就必须先git pull 再push  否则报错  所以为稳妥起见 我们可以每一次上传代码都git pull 之后再push 
+2：fatal: remote origin already exists   简单提供一种方法   git remote rm origin  因为报错的原因就在于远程仓库已经存在  所以就先删除远程仓库后再重新git remote add origin
  vi .git/config   把 [remote “origin”] 那一行删掉就好了
-
-当出现下面这行报错时我们需要先合并一下请求再push  git pull --rebase origin master
+3：当出现下面这行报错时我们需要先合并一下请求再push  git pull --rebase origin master
  failed to push some refs to 'git@github.com:wuaidianqingcheng/success.git
 
-当出现下面的这个错误的时候
+4：当出现下面的这个错误的时候
 git push时报错fatal: Could not read from remote repository.
 就极有可能是两次的github地址不一样  我们可以git remote -v  查看一下仓库地址  很清楚的发现
 origin  git@github.com:wuaidianqingcheng/success.git (fetch)
 origin  git@github.com:wuaidianqingcheng/success.git (push)
 一个为push 一个为fetch   此时  我们需要git remote set-url origin '你的项目地址'
 之后重新pull push， 即可
-
-有时我们git  push origin master 或者git的pull时候 
+5：有时我们git  push origin master 或者git的pull时候 
 当报错git@github.com: Permission denied (publickey).
 fatal: Could not read from remote repository.
 极有可能是我们的密钥错误  从新打开密钥文件  或者重新生成密钥  复制粘贴进去  重新push  即可
