@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				float: left;
+			}
+			#box a{
+				float: left;
+				text-decoration: none;
+				color: white;
+				background: black;
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				margin: 0 10px;
+			}
+			#box .active{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<a href="javascript:">你的</a>
+			<a href="javascript:">他的</a>
+			<a href="javascript:">我的</a>
+			<a href="javascript:">没的</a>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#box').children().each(function(){
+				$(this).mouseenter(function(){
+					$(this).addClass('active')
+					$('#box a').not($(this)).each(function(){
+						$(this).removeClass('active')
+					})
+				})
+				$(this).on('click',function(){
+					$(this).addClass('active')
+				})
+			})
+			
+		})
+	</script>
+</html>

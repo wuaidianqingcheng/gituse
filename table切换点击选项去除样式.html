@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.oul{
+				float: left;
+			}
+			.oul li{
+				float: left;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background: yellow;
+				color: red;
+				list-style-type: none;
+				margin-left: 10px;
+			}
+			.oul .active{
+				background: black;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul class="oul">
+				<li class="active">首页</li>
+				<li>列表</li>
+				<li>轮播</li>
+				<li>购物</li>
+				<li>我的</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/data01.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.oul').children().on('click',function(){
+				$(this).addClass('active')
+				$('.oul li').not($(this)).each(function(){
+					$(this).removeClass('active')
+				})
+			})
+			console.log(x)
+		})
+	</script>
+</html>

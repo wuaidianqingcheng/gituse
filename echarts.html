@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="ech" style="width: 500px;height: 200px;">
+			
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var myech = echarts.init(document.getElementById("ech"))
+		var da = '';
+		myech.showLoading()
+		$.ajax({
+			type:"get",
+			url:"http://axadmin.zhuican.net/Micro_table/micro_hotspot_search_table?pcid=6&cid=50006077&datamonth=201807",
+			async:true,
+			success:function(data){
+				da = data;
+				console.log(da)
+				var day = [],size=[];
+				da.forEach(function(item,index){
+					day.push(item.submarket);
+					size.push(item.total_sold_price)
+				})
+				console.log(day)
+				myech.hideLoading()
+				myech.setOption({
+					title:{
+						text:'echarts使用指南'
+					},
+					tooltip:{
+						
+					},
+					legend:{
+						data:"销量"
+					},
+					xAxis:{
+						data:day
+					},
+					yAxis:{
+						
+					},
+					series:[{
+						name:"销量",
+						type:"bar",
+						data:size
+					}]
+				})
+			}
+		});
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<div id="box" style="width: 500px;height: 500px;">
+		
+	</div>
+	<body>
+	</body>
+	<script src="../js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var ech = echarts.init(document.getElementById("box"));
+		var options = {
+			title:{
+				text:"饼图实例"
+			},
+			series:{
+				type:"pie",
+				
+				
+				itemStyle:{
+					color:'red',
+					shadowBlur:500,
+					shadowOffsetX:0,
+					shadowOffSetY:0,
+					/*shadowColor:'rgba(255,43,12,.5)',*/
+					emphasis:'rgba(40,60,80,.5)'
+				},
+				/*roseType:'angle',  南丁格尔图  roseType:'angle'*/
+				data:[
+					{name:'鞋子',value:'20'},
+					{name:'雨伞',value:'30'},
+					{name:'电饭锅',value:'50'}
+				]
+			},
+			textStyle:{
+				color:'#fff'
+			}
+		}
+		ech.setOption(options)
+	</script>
+</html>

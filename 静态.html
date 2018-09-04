@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/styles.css"/>
+	<body>
+		
+<div class="inner_banner case_banner">
+    <div class="auto clearfix">
+        <div class="imgbox fl">
+            <img src="<?php echo base_url('public/images/data_04.png')?>" alt="" class="img"/>
+        </div>
+        <div class="info fr">
+            <h4 class="title">数据报告</h4>
+            <em class="line"></em>
+            <div class="desc">
+                提供适合不同类型企业的支持计划，及覆盖上云前、中、
+                后全周期的专业技术服务，让云上业务更高效
+            </div>
+            <div class="btns">
+                <a href="#" class="btn button cur">点击查看</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spe_main">
+    <div class="auto clearfix">
+        <div class="spe_l fl">
+<!--            <div class="spe_menu clearfix">-->
+
+               <h1>非常抱歉，页面暂时找不到</h1>
+               <p>请问您是否<a href="">返回首页</a>或者<a href="">刷新</a>本页面</p>
+        </div>
+        <div class="spe_r fr">
+            <form id="search" class="spe_search mb30">
+                <input type="text" class="ipt ipt_txt fl"/>
+                <input type="submit" value="搜索" class="ipt ipt_button fr"/>
+            </form>
+            <div class="spe_module mb20 spe_chart">
+                <h6 class="t_title">家用电器行业分析</h6>
+                <div class="detail">
+                    <div class="chart">
+                        <a href="/Index/industry/4/0" class="leftImgBox" >
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_electric.png">
+                            <span>家用电器</span>
+                        </a>
+                        <a href="/Index/industry/2/0" class="leftImgBox" >
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_shoe.png">
+                            <span>服装鞋包</span>
+                        </a>
+                        <a href="/Index/industry/5/0" class="leftImgBox" >
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_makeups.png">
+                            <span>美妆饰品</span>
+                        </a>
+                        <a href="/Index/industry/6/0" class="leftImgBox" >
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_child.png">
+                            <span>母婴用品</span>
+                        </a>
+                        <a href="/Index/industry/8/0" class="leftImgBox" >
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_food.png">
+                            <span>百货食品</span>
+                        </a>
+                        <a href="/Index/industry/9/0" class="leftImgBox">
+                            <img src="//static.decisiondog.cn/img/microDataReport/report_sport.png">
+                            <span>运动户外</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="spe_module mb20 spe_recom">
+                <h6 class="t_title">热门推荐</h6>
+                <div class="detail">
+                    <ul class="list">
+
+                        <?php foreach ($recommendList as $item):?>
+                            <li class="clearfix">
+                                <div class="imgbox img_hover_wrap fl">
+                                    <img src="<?=$item['picture']?>" alt="" class="img img_hover"/>
+                                </div>
+                                <div class="info fr">
+                                    <a href="/Index/report_article/<?=$key?>/<?=$item['id']?>" class="title"><?=$item['title']?></a>
+                                    <span class="date"><?=$item['createTime']?></span>
+                                </div>
+                            </li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+            </div>
+            <div class="spe_module mb20 spe_tags">
+                <h6 class="t_title">热门标签</h6>
+                <div class="detail">
+                    <?php foreach($title as $key=>$val):?>
+                            <a href="/index/report_list/<?=$val?>/1"><?=$val?></a>
+                    <?php endforeach;?>
+                </div>
+            </div>
+            <div class="spe_module mb20 spe_ser">
+                <h6 class="t_title">决策狗产品与服务 </h6>
+                <div class="detail">
+                    <div class="list clearfix">
+                        <a href="/Index/industry/4/0" class="item">
+                            <img src="<?php echo base_url('public/images/data_19.jpg')?>" alt="" class="img"/>
+                            <div class="shade">
+                                <img src="<?php echo base_url('public/images/data_11.png')?>" alt="" class="icon"/>
+                                <p class="font">行业版</p>
+                            </div>
+                        </a>
+                        <a href="/index/micro" class="item">
+                            <img src="<?php echo base_url('public/images/data_17.jpg')?>" alt="" class="img"/>
+                            <div class="shade">
+                                <img src="<?php echo base_url('public/images/data_12.png')?>"alt="" class="icon"/>
+                                <p class="font">微数据</p>
+                            </div>
+                        </a>
+                        <a href="/index/ax" class="item">
+                            <img src="<?php echo base_url('public/images/data_18.jpg')?>" alt="" class="img"/>
+                            <div class="shade">
+                                <img src="<?php echo base_url('public/images/data_13.png')?>" alt="" class="icon"/>
+                                <p class="font">决策狗AX</p>
+                            </div>
+                        </a>
+                        <a href="/index/compass" class="item">
+                            <img src="<?php echo base_url('public/images/data_19.jpg')?>" alt="" class="img"/>
+                            <div class="shade">
+                                <img src="<?php echo base_url('public/images/data_14.png')?>"alt="" class="icon"/>
+                                <p class="font">单品罗盘</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="lks">
+                        <a href="#" class="odd">市场定位</a>
+                        <a href="/index/advice" class="even">产品研发</a>
+                        <a href="/index/advice2" class="odd">竞品策略</a>
+                        <a href="/index/advice3" class="even">平台研发</a>
+                    </div>
+                </div>
+            </div>
+            <div class="spe_module mb20 spe_recom spe_case">
+                <h6 class="t_title">成功案例</h6>
+                <div class="detail">
+                    <ul class="list">
+
+                        <li class="clearfix">
+
+
+                            <div class="imgbox img_hover_wrap fl">
+                                <img src=" //static.decisiondog.cn/static/pdf/img_server8.png" alt="海尔" class="img img_hover"/>
+                            </div>
+
+                            <div class="info fr">
+                                <a href=" //static.decisiondog.cn/static/pdf/viewer.html?name=server8.pdf" target="pdfContainer" onclick="showPdf(true, '产品开发-海尔卡萨帝-目录')" class="title">海尔卡萨帝，用户洞察驱动产品研发</a>
+                                <div class="tags">
+                                    <span>家居电器 </span>|
+                                    <span>油烟机 </span>
+                                </div>
+                            </div>
+
+
+                        </li>
+                        <li class="clearfix">
+                            <div class="imgbox img_hover_wrap fl">
+                                <img src="//static.decisiondog.cn/static/pdf/img_server9.png"alt="三枪" class="img img_hover"/>
+                            </div>
+                            <div class="info fr">
+                                <a href=" //static.decisiondog.cn/static/pdf/viewer.html?name=server9.pdf" target="pdfContainer" onclick="showPdf(true, '产品开发-三枪-目录')" class="title">三枪推动产品创新迭代</a>
+                                <div class="tags">
+                                    <span>服装鞋包 </span>|
+                                    <span>内衣 </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="imgbox img_hover_wrap fl">
+                                <img src=" //static.decisiondog.cn/static/pdf/img_server11.jpg"alt="哈尔斯" class="img img_hover"/>
+                            </div>
+                            <div class="info fr">
+                                <a href=" //static.decisiondog.cn/static/pdf/viewer.html?name=server11.pdf" target="pdfContainer" onclick="showPdf(true, '产品开发-哈尔斯-目录')" class="title">提升产品转化率哈尔斯保温杯</a>
+                                <div class="tags">
+                                    <span>百货视频 </span>|
+                                    <span>保温杯 </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.if{
+				background: #005952;
+				color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			<li v-for="item in arr">{{item.num}}</li>
+			<p class="if" v-if="go">啦啦啦，德玛西亚</p>
+			<p class="if" v-show="show">啦啦啦，德玛西亚</p>
+			<button @click="togo">切换if</button>
+			<button @click="toshow">切换show</button>
+			<input type="text" v-model="ipt" />
+			<p>{{ipt}}</p>
+		</div>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script type="text/javascript">
+		var App = new Vue({
+			el:'#app',
+			data:{
+				msg:'hello world',
+				arr:[
+				{"num":"1"},
+				{"num":"2"},
+				{"num":"3"},
+				{"num":"4"},
+				{"num":"5"},
+				{"num":"6"}				
+				],
+				go:true,
+				show:true,
+				ipt:''
+			},
+			methods:{
+				
+				togo:function(){
+					this.go = !(this.go)
+				},
+				toshow:function(){
+					this.show = !(this.show)
+				}
+				
+			}
+		})
+	</script>
+</html>

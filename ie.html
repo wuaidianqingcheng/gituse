@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box">
+			<img src="img/图片1.png"/ class="hover" width="500px" height="650px">
+		</div>
+	</body>
+	<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var wid = $('.hover').width();
+		var hei = $('.hover').height();
+		var wid1 = wid + 50;
+		var hei1 = hei + 50;
+		$('.hover').hover(function(){
+			$(this).animate({
+				'width':wid1,
+				'height':hei1,
+				'left':'-50px',
+				'top':'-50px'
+			})
+		},function(){
+			$(this).animate({
+				'width':wid,
+				'height':hei,
+				'top':'0px',
+				'left':'0px'
+			})
+		})
+	</script>
+</html>
