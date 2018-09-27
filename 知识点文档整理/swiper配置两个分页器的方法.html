@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <title>Document</title>
+    <style>
+        .swiper-container{
+            width: 500px;
+            height: 200px;
+        }
+        
+        .swiper-wrapper{
+            width: 500px;
+            height: 200px;
+        }
+       
+        .swiper-slide{
+            background: #bca;
+        }
+       
+        .swiper-container-horizontal .swiper-pagination-fraction{
+            width: 30%;
+            height: 30px;
+            top:-35px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">slider1</div>
+          <div class="swiper-slide">slider2</div>
+          <div class="swiper-slide">slider3</div>
+          <div class="swiper-slide">slider4</div>
+          <div class="swiper-slide">slider5</div>
+          <div class="swiper-slide">slider6</div>
+          <div class="swiper-slide">slider7</div>
+          <div class="swiper-slide">slider8</div>
+
+
+        </div>
+        <div class="swiper-pagination swiper-pagination-bullets">
+            <span class="swiper-pagination-bullet swiper-pagination-bullet-active" ></span>
+            <span class="swiper-pagination-bullet" ></span>
+            <span class="swiper-pagination-bullet" ></span> 
+            <span class="swiper-pagination-bullet" ></span>
+            <span class="swiper-pagination-bullet" ></span>            
+            <span class="swiper-pagination-bullet" ></span>            
+            <span class="swiper-pagination-bullet" ></span>            
+            <span class="swiper-pagination-bullet" ></span>            
+
+
+        </div>
+        <div class="swiper-pagination swiper-pagination-fraction">
+            <span class="swiper-pagination-current">5</span> / 
+            <span class="swiper-pagination-total">10</span>
+        </div> 
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
+        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="false"></div>
+    </div>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+	    autoplay: true,//可选选项，自动滑动
+        pagination: {
+        el: '.swiper-pagination',        
+        },
+        pagination: {
+            el: '.swiper-pagination-fraction',
+            type: 'fraction',
+        },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+    var swiper = new Swiper('.swiper-container1', {
+        autoplay: true,
+        pagination: {
+            el: '.swiper-pagination1',
+            type: 'fraction',
+        },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    
+</script>
+</html>
