@@ -1,0 +1,18 @@
+JSP表单处理
+GET方法
+
+	GET方法将请求的编码信息添加在网址后面，网址与编码信息通过?分隔
+	GET方法是浏览器默认传递参数的方法，一些敏感信息，如密码等不建议使用GET方法
+	GET方法对数据大小有限制，最大为1024字节
+POST方法
+	一些敏感信息，如密码等我们可以通过POST方法传递，POST提交数据时隐式的
+	POST对数据的提交是不可见的，get是通过在url里面传递数据
+	JSP使用getParameter（）来获取传递的参数，getInputStream（）方法用来处理客户端二进制数据流的请求
+	
+	JSP 读取表单数据
+	getParameter(): 使用 request.getParameter() 方法来获取表单参数的值。
+	getParameterValues(): 获得如checkbox类（名字相同，但值有多个）的数据。 接收数组变量 ，如checkbox类型
+	getParameterNames():该方法可以取得所有变量的名称，该方法返回一个 Enumeration。
+	getInputStream():调用此方法来读取来自客户端的二进制数据流。
+	
+	
