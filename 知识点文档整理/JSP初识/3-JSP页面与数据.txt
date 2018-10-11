@@ -14,5 +14,186 @@ POST方法
 	getParameterValues(): 获得如checkbox类（名字相同，但值有多个）的数据。 接收数组变量 ，如checkbox类型
 	getParameterNames():该方法可以取得所有变量的名称，该方法返回一个 Enumeration。
 	getInputStream():调用此方法来读取来自客户端的二进制数据流。
+
+	JSP过滤器
+	JSP和Servlet中的过滤器都是Java类
+	过滤器可以动态拦截请求和响应，以变换或使用包含在请求或响应中的信息
+	可以将一个或多个过滤器附加到一个Servlet或一组Servlet。过滤器也可以附加到JavaServer Pages（jsp）文件和HTML页面
+	过滤器是可用于Servlet编程的Java类，可以实现以下目的：
+		在客户端的请求访问后端资源之前，拦截这些请求
+		在服务器的响应发送给客户端之前，处理这些请求
+	根据规范建议的各种类型的过滤器
+		身份验证过滤器
+		数据压缩过滤器
+		加密过滤器
+		触发资源访问事件过滤器
+		图片转换过滤器
+		日志记录和审核过滤器
+		MIME-TYPE链过滤器
+		标记化过滤器
+		XSL/T过滤器
+	过滤去通过web部署描述符中的XML标签来声明，然后映射到您的应用程序的部署描述符中的Servlet名称或URL模式。
+	当Web容器启动web应用程序时，它会为您在部署描述符中声明的每一个过虑器创建一个实例
 	
+	Servlet过滤器方法
+	过滤器是一个实现了javax.servlet.Filter接口的Java类。它定义了三个方法：
+		public void doFilter（ServletRequest，ServletResponse，FilterChain）
+		该方法实现实际的过滤操作，当客户端请求方法与过滤器设置匹配的URL时，Servlet容器将先调用过滤器的
+doFilter方法。FilterChain用户访问后续过滤器
+		public void init(FilterConfig filterConfig)
+		web应用程序启动时，web服务器将创建Filter的实例对象，并调用其他init方法。读取web.xml配置，完成
+对象的初始化功能，从而为后续的用户请求做好拦截的准备工作（filter对象只会创建一次，init方法也只会执行一次）。开发
+人员通过init方法的参数，可获得代表当前filter配置信息的FilterConfig对象
+		public void destroy（）
+		Servlet容器在销毁过滤器实例前调用该方法，在该方法中释放Servlet过滤器占用的资源
+		
+	JSP Cookie
+	Cookie是存储在客户机的文本文件，它们保存了大量轨迹信息。在servlet技术基础上，JSP显然能够提供对HTTP cookie的支持
+	通常有三个步骤来识别回头客：
+		服务器脚本发送一系列cookie至浏览器。比如名字，年龄，id号码等
+		浏览器在本机存储这些信息，以备不时之需
+		当下一次浏览器发送任何请求至服务器时，它会同时将这些cookie信息发送给服务器，然后服务器使用这些信息来识别
+用户或者干些其他事情
+	Cookie通常在HTTP信息头中设置。在JSP中，设置一个cookie需要发送如下的信息头给服务器
 	
+	Servlet	Cookie方法
+	下面是一些Cookie对象中常用的方法
+
+	1	public void setDomain(String pattern)
+	设置cookie的域名，比如 runoob.com
+	2	public String getDomain()
+	获取cookie的域名，比如 runoob.com
+	3	public void setMaxAge(int expiry)
+	设置cookie有效期，以秒为单位，默认有效期为当前session的存活时间
+	4	public int getMaxAge()
+	获取cookie有效期，以秒为单位，默认为-1 ，表明cookie会活到浏览器关闭为止
+	5	public String getName()
+	返回 cookie的名称，名称创建后将不能被修改
+	6	public void setValue(String newValue)
+	设置 cookie的值
+	7	public String getValue()
+	获取cookie的值
+	8	public void setPath(String uri)
+	设置cookie 的路径，默认为当前页面目录下的所有URL，还有此目录下的所有子目录
+	9	public String getPath()
+	获取cookie 的路径
+	10	public void setSecure(boolean flag)
+	指明cookie是否要加密传输
+	11	public void setComment(String purpose)
+	设置注释描述 cookie的目的。当浏览器将cookie展现给用户时，注释将会变得非常有用
+	12	public String getComment()
+	返回描述cookie目的的注释，若没有则返回null
+
+	JSP Seesion
+	HTTP是无状态协议，这意味着每次客户端检索网页时，都要单独打开一个服务器连接，因此服务器不会记录下先前客户端请求的任何信息
+	但是也有三种方式用来维持客户端和服务器的会话
+	
+	Cookies
+		网络服务器可以指定一个唯一的Session ID作为cookie来代表每个客户端，用来识别这个客户端接下来的请求
+		这可能不是一种有效的方式，因为很多时候浏览器并不一定支持cookie，所以不建议使用这种方法来维持会话
+	
+	隐藏表单域
+		一个网络服务器可以发送一个隐藏的HTML表单和一个唯一的Session ID，就像下面这样
+		<input type="hidden" name="sessionid" value="12345">
+		这个条目意味着，当表单被提交时，指定的名称和值将会自动包含在GET和POST数据中。每当浏览器发送一个请求，session_id的值就
+可以用来保存不同浏览器的轨迹
+		这种方式可能是一种有效的方式，但点击<A HREF>标签中的超链接时不会产生表单提交事件，因此隐藏表单域也不支持通用会话跟踪
+	重写URL
+		您可以在每个URL后面添加一些额外的数据来区分1会话，服务器能够根据这些数据来关联session标识符
+	
+	Session对象
+	除了上述的方法外，JSP利用servlet提供的HttpSession接口来识别一个用户，存储这个用户的所有访问信息
+	默认情况下，JSP允许会话跟踪，一个新的HttpSession对象将会自动的为新的客户端实例化。禁止会话跟踪需要显式的关掉它，通过
+将page指令中指令设置为false来实现
+	<%@ page session="false" %>
+	JSP引擎将隐含的session对象暴露给开发者。由于提供了session对象，开发者就可以方便地存储或检索数据。
+	1	public Object getAttribute(String name)
+	返回session对象中与指定名称绑定的对象，如果不存在则返回null
+	2	public Enumeration getAttributeNames()
+	返回session对象中所有的对象名称
+	3	public long getCreationTime()
+	返回session对象被创建的时间， 以毫秒为单位，从1970年1月1号凌晨开始算起
+	4	public String getId()
+	返回session对象的ID
+	5	public long getLastAccessedTime()
+	返回客户端最后访问的时间，以毫秒为单位，从1970年1月1号凌晨开始算起
+	6	public int getMaxInactiveInterval()
+	返回最大时间间隔，以秒为单位，servlet 容器将会在这段时间内保持会话打开
+	7	public void invalidate()
+	将session无效化，解绑任何与该session绑定的对象
+	8	public boolean isNew()
+	返回是否为一个新的客户端，或者客户端是否拒绝加入session
+	9	public void removeAttribute(String name)
+	移除session中指定名称的对象
+	10	public void setAttribute(String name, Object value) 
+	使用指定的名称和值来产生一个对象并绑定到session中
+	11	public void setMaxInactiveInterval(int interval)
+	用来指定时间，以秒为单位，servlet容器将会在这段时间内保持会话有效
+
+	删除Session数据
+	当处理完一个用户的会话数据后，您可以有如下选择：
+		移除一个特定的属性：
+		调用public void removeAttribute(String name)  方法来移除指定的属性。
+		删除整个会话：
+		调用public void invalidate() 方法来使整个session无效。
+		设置会话有效期：
+		调用 public void setMaxInactiveInterval(int interval)  方法来设置session超时。
+		登出用户：
+		支持servlet2.4版本的服务器，可以调用 logout()方法来登出用户，并且使所有相关的session无效。	
+		配置web.xml文件：
+		如果使用的是Tomcat，可以向下面这样配置web.xml文件：
+  		<session-config>
+    			<session-timeout>15</session-timeout>
+  		</session-config>
+
+		超时以分钟为单位，Tomcat中的默认的超时时间是30分钟。
+		Servlet中的getMaxInactiveInterval( ) 方法以秒为单位返回超时时间。如果在web.xml中配置的是15分钟，则getMaxInactiveInterval( ) 方法将会返回900。
+		
+	JSP文件上传
+	JSP可以与Html FORM标签一起使用，来允许用户上传文件到服务器。上传的文件可以是文本文件或图像文件或任何文档
+	
+	创建一个文件上传表单
+	下面几点需要注意
+		表单method属性需为POST方法，不能使用GET方法
+		表单enctype属性应设置为multipart/form-data
+		表单action属性应该设置为在后端服务器上处理文件上传的Servlet。下面的实例使用了UploadServlet Servlet来上传文件
+
+	JSP日期处理
+	使用JSP最重要的优势之一就是可以使用所有Java API。本章将会详细的讲述java中的Data类，它在java.util包下，封装了当前日期和时间
+	Data类有两个构造函数：
+		第一个构造函数使用当前日期和时间来初始化对象
+		Date()
+		第二个构造函数接受一个参数，这个参数表示从1970年1月1日凌晨至所要表示时间的毫秒数。
+		1	boolean after(Date date)
+		如果比给定的日期晚，则返回true，否则返回false
+		2	boolean before(Date date)
+		如果比给定的日期早，则返回true，否则返回false
+		3	Object clone( )
+		获取当前对象的一个副本
+		4	int compareTo(Date date)
+		如果与给定日期相等，则返回0，如果比给定日期早，则返回一个负数，如果比给定日期晚，则返回一个正数
+		5	int compareTo(Object obj)
+		与 compareTo(Date) 方法相同，如果 obj 不是Date类或其子类的对象，抛出ClassCastException异常
+		6	boolean equals(Object date)
+		如果与给定日期相同，则返回true，否则返回false
+		7	long getTime( )
+		返回从1970年1月1日凌晨至此对象所表示时间的毫秒数
+		8	int hashCode( )
+		返回此对象的哈希码
+		9	void setTime(long time)
+		使用给定参数设置时间和日期，参数time表示从1970年1月1日凌晨至time所经过的毫秒数
+		10	String toString( )
+		将此对象转换为字符串并返回这个字符串
+		
+	JSP页面重定向
+	当需要将文档移动到一个新的位置时，就需要使用JSP重定向了
+	最简单的方式就是使用response对象的sendRedirect（）方法
+		public void response.sendRedirect(String location)
+		throws IOException 
+	这个方法将状态码和新的页面位置作为响应发回给浏览器。您也可以使用setStatus()和setHeader()方法来得到同样的效果：
+
+....
+	String site = "http://www.runoob.com" ;
+	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	response.setHeader("Location", site); 
+....
