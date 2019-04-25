@@ -2,3 +2,34 @@
 时光机第二次
 时光机第三次
 时光机第四次
+
+
+
+时间机使用场景  强制回滚到某个版本后再次提交，导致中间迭代版本代码消失   举例 1，2,3,4,5版本  强制回滚到1版本后提交6版本  中间2，3,4,5版本代码消失
+
+git reset --hard ‘某次提交hash值’强制回滚到某个版本
+
+解决办法   
+
+git reflog 查看当前git所有提交纪录 显示其hash值  
+
+git cherry-pick ‘某次提交的hash值’往当前分支添加某个版本的代码  可能有冲突
+
+时光机解决办法：  git reflog  记录5版本和6版本hansh
+git reset --hard ‘5版本hash’ 回滚到5版本  此时版本代码为1，2,3,4,5，没有6版本代码
+git cherry-pick ‘6版本hash值’添加6版本代码
+
+
+
+git clon  下载项目后  分支代码消失  分支找不到
+
+解决办法   git branch -a /git branch -r 查看当前/远程 分支
+ remotes/origin/HEAD -> origin/master
+  remotes/origin/demo
+  remotes/origin/master
+  remotes/origin/wh
+
+
+git checkout -u demo origin/demo  本地新建分支并与远程仓库的分支进行关联
+
+逐一关联后  切换回某个分支进行操作即可
