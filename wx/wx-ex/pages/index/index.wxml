@@ -1,1 +1,11 @@
 <!--index.wxml-->
+<swiper  autoplay='{{autoPlay}}' interval='{{interval}}' duration='{{duration}}' circular='{{circular}}'>
+  <swiper-item wx:for="{{imgUrls}}" wx:key="{{index}}">
+    <image src="{{item}}" class="slider-img"></image>
+  </swiper-item>
+</swiper>
+<view>
+首页
+</view>
+
+

@@ -1,11 +1,23 @@
 // pages/index/index.js
+var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+      time:util.formatTime(new Date()), 
+      indicator:true,
+      autoPlay:true,
+      circular:true,
+      interval:3000,
+      duration:1000,
+      imgUrls:[
+        '../../static/img/01.jpg',
+        '../../static/img/02.jpg',
+        '../../static/img/03.jpg'
 
+      ]
   },
 
   /**
