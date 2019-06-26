@@ -1,0 +1,13 @@
+<!--pages/hand/hand.wxml-->
+<view bindtap='goMap' class='goLi goLib'>
+  <image src="../../static/img/arrow.png" />
+  <text>地图导航</text>
+</view>
+<view bindtap='goBaidu' class='goLi goLib'>
+  <image src="../../static/img/arrow.png" />
+  <text>百度搜索</text>
+</view>
+<view bindtap='goMucic' class='goLi'>
+  <image src="../../static/img/arrow.png" />
+  <text>打开音乐</text>
+</view>

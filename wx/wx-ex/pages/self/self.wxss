@@ -1,0 +1,18 @@
+/* pages/self/self.wxss */
+view{
+  display: flex;
+  padding:0 0 0 30px
+}
+image{
+  width:100px;
+  height:100px;
+  display:inline-block;
+  overflow:hidden;
+  border-radius:50% 50%; 
+}
+text{
+  display: inline-block;
+  height: 100px;
+  line-height: 100px;
+  margin-left: 30px
+}

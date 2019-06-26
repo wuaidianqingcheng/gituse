@@ -1,13 +1,44 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/init/init"
+    "pages/init/init",
+    "pages/self/self",
+    "pages/hand/hand",
+    "pages/map/map",
+    "pages/baidu/baidu"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "小程序ex",
+    "navigationBarTextStyle": "white"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/img/index.png",
+        "selectedIconPath": "static/img/index-select.png"
+      },
+      {
+        "pagePath": "pages/hand/hand",
+        "text": "操作",
+        "iconPath": "static/img/hand.png",
+        "selectedIconPath": "static/img/hand-select.png"
+      },
+      {
+        "pagePath": "pages/self/self",
+        "text": "我的",
+        "iconPath": "static/img/self.png",
+        "selectedIconPath": "static/img/self-select.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "本机所在位置迁移接口"
+    }
+  }
 }
