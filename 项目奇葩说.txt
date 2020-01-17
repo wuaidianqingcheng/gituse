@@ -1,0 +1,80 @@
+问题1：针对于echarts 在轮播样式为display：none；为基础的切换形式（例如layui）   除初始化第一个为正常显示
+其余皆紧缩在一起  
+问题1解决办法：
+1.开局设置其余需轮播子块的宽高
+2.使用element轮播  仅限于 vue react angular  
+3:layui tab 各类子元素切换块添加layui-show
+
+问题2：针对element 样式覆盖
+问题2解决办法
+.el-main /deep/ .el-aside{********}
+
+问题3：针对于 layui carousel 轮播组件   页面正中显示loading
+问题3解决办法：
+对 carousel-item 的伪类before样式覆盖.layui-carousel>[carousel-item]:before{content: ""!important;}
+
+问题4：针对于使用sass进行css样式编译  安装node-sass sass-loader style-loader 编译报错this.getResolve is not a function
+问题4解决办法：
+package.json降低sass-loader的版本 重新安装 
+
+问题5：vue npm run dev 编译速度卡顿  消耗时间太长 vue-cli2脚手架生成
+问题5解决办法：
+1.开启uglifyjs-webpack-plugin的cache cache 为true -----webpack.prod.conf.js
+2.babel-loader 设置 exclude:/(node_modules)/ -----设置babel编译不包括node_modules(webpack.base.conf.js)
+3.eslintignore 忽略文件 
+4.模块热加载HMR代替hotReload （vue-loader.conf.js）
+
+问题6：vue自定义指令及使用
+import Vue from 'vue' 
+Vue.directive("wh",{
+  bind(el,binding,vnode,oldNode){
+    el:指令绑定的元素
+    binding:object,{name:指令名,value:指令绑定值，oldVlaue:指令绑定前一个值,expression:字符串形式指令表达式，arg:传给指令的参数，modifiers:一个包含修饰符的对象}
+    vnode:vue编译生成的虚拟的节点
+    oldVnode:上一个虚拟节点
+    除el外  其余为只读数据   如果需要共享数据  使用dataset
+  }
+})
+
+需绑定制定的元素绑定 v-wh 即可
+
+问题7:
+ 高德地图3d效果显示
+viewMode：3d  
+拉伸距离：zoom：100，
+倾斜角度：pitch：40 0-83
+使用 示例 为 vue-amap
+<el-amap
+      ref="map"
+      vid="amapDemo"
+      :center="center"
+      :zoom="zoom"
+      class="amap-demo"
+      :pitch="pitch"
+      :viewMode="viewMode"
+      style="opacity:.5;margin:30px 0 0 0"
+></el-amap>
+
+
+问题8: vue webpack打包编译后 字体样式由于转码多出斜杠不生效
+问题8解决办法:
+换成英文格式的字体类型
+
+问题9:element ui table数据导出为excel格式  报错createObjectURL
+问题9解决办法
+file-saver 降版本
+
+问题10:element 分页 total默认显示修改 （共1000条）
+问题10解决办法 
+document.getElementsByClassName(
+      "el-pagination__total"
+    )[0].innerHTML = `共计：<span style="color:#0079FE;">${this.total}</span>条查询结果`;
+可封装为公共插件哪里需要哪里调用
+
+问题11：自写table切换样式添加
+问题11：解决办法  
+自定义时间传参 当前index  
+自定义属性activeClass  
+绑定属性 :class activeClass == “index ? “默认样式+激活样式” :"默认定义“”
+自定义事件接收参数index  this.activeClass = index
+需切换div v-show activeClass === 0 ? true : false 0代表对应索引显示 如果为循环生成即为对应index
