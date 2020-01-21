@@ -78,3 +78,15 @@ document.getElementsByClassName(
 绑定属性 :class activeClass == “index ? “默认样式+激活样式” :"默认定义“”
 自定义事件接收参数index  this.activeClass = index
 需切换div v-show activeClass === 0 ? true : false 0代表对应索引显示 如果为循环生成即为对应index
+
+问题12:页面文字多次连续点击出现蓝色背景
+问题12解决办法:
+js实现
+    document.onselectstart = new Function("return false");
+css实现
+     html,body{
+        -webkit-user-select:none; 
+        -moz-user-select:none; 
+        -ms-user-select:none; 
+        user-select:none;
+    }
