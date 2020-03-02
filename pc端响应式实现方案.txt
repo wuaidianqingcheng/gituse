@@ -1,0 +1,13 @@
+针对于pc端响应式实现  ==》 pc端页面自适应不同分辨率
+通过媒体查询适配当前屏幕宽度断点 设置不同样式 以此达到pc端适配不同屏幕
+
+@media screen (min-width:1280px){}
+@media screen (min-width:1360px){}
+min-width ==》从小到大
+
+
+@media screen (min-width:1360px){}
+@media screen (min-width:1280px){}
+max-width ==》从大到小
+
+建议 高度使用百分比布局
