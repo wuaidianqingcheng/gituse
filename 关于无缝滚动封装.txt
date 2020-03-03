@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字无缝滚动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0
+		}
+		#wrapper{
+			/* 最外层overflow:hidden;必须要有 决定是否滚动 */
+			overflow:hidden; 
+			height:30px;
+			width:500px;
+			background:#ccc;
+			color:#006600;
+			margin: 100px auto;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	    <div id="wrapper">  
+		<div id="demo1">  
+			<p>1234</p>  
+			<p>4567</p>  
+			<p>891911</p>  
+			
+		</div>  
+		<div id="demo2">
+		</div>  
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var speed = 80;  // 可自行设置文字滚动的速度
+	
+	// 文字滚动
+	var speed = 80; // 可自行设置文字滚动的速度
+	function Marquee(wrapper, demo1, demo2) {
+		var wrapper = document.getElementById(wrapper);
+		var demo1 = document.getElementById(demo1);
+		var demo2 = document.getElementById(demo2);
+		demo2.innerHTML = demo1.innerHTML; //克隆demo1为demo2  
+		if (demo2.offsetHeight - wrapper.scrollTop <= 0) //当滚动至demo1与demo2交界时  
+			wrapper.scrollTop -= demo1.offsetHeight; //demo跳到最顶端  
+		else {
+			wrapper.scrollTop++; //如果是横向的 将 所有的 height top 改成 width left  
+		}
+	}
+	setInterval(function () {
+		Marquee("wrapper", "demo1", "demo2");
+	}, speed)
+</script>
