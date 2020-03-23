@@ -1,0 +1,14 @@
+html,
+body {
+  border-radius: 10px;
+  -webkit-transform: matrix(1);
+  transform: matrix(1);
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-animation: 1;
+          animation: 1;
+}
