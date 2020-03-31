@@ -26,6 +26,6 @@ max-width ==》从大到小
 宽度-两边padding 剩余部分使用百分比布局 
 建议小数点后两位 误差不超过1px
 
-
+宽度使用百分比  高度 rem  html，body{font-size:10px;font-size:62.5%;} 前面写px 适配不支持百分比的浏览器
 
 移动端建议rem布局
