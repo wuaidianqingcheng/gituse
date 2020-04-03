@@ -1,0 +1,46 @@
+{
+  "workbench.colorTheme": "Monokai",
+  "editor.formatOnType": "true",
+  "editor.formatOnSave": "true",
+  "files.autoSave": "off",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "eslint.options": {
+    "plugins": [
+      "html"
+    ]
+  },
+  "easysass.formats": [
+    {
+      "format": "expanded",
+      "extension": ".css"
+    }
+  ],
+  "easysass.targetDir": "./css/",
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "update.enableWindowsBackgroundUpdates": true,
+  "background.customImages": [
+    "file:///C:/img/5.png" //图片地址
+  ],
+  "background.style": {
+    "content": "''",
+    "pointer-events": "none",
+    "position": "absolute", //图片位置
+    "width": "100%",
+    "height": "100%",
+    "z-index": "99999",
+    "background.repeat": "no-repeat",
+    "background-size": "100%,100%", //图片大小
+    "opacity": 0.5 //透明度
+  },
+  "background.useFront": true,
+  "background.useDefault": false //是否使用默认图片
+}
