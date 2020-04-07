@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .content {
+    width: 50%;
+    height: 80%;
+    background: pink;
+    position: relative;
+    border: 1px solid #000;
+    margin: 50px auto;
+    overflow: hidden;
+  }
+
+  .dataUl {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 1;
+  }
+
+  .dataUl li {
+    list-style: none;
+    height: 10%;
+  }
+
+</style>
+
+<body>
+  <div class="content">
+    <ul id="dataUl1" class="dataUl">
+      <li class="dataUl-item">1</li>
+      <li class="dataUl-item">2</li>
+      <li class="dataUl-item">3</li>
+      <li class="dataUl-item">4</li>
+      <li class="dataUl-item">5</li>
+      <li class="dataUl-item">6</li>
+      <li class="dataUl-item">7</li>
+      <li class="dataUl-item">8</li>
+      <li class="dataUl-item">9</li>
+      <li class="dataUl-item">10</li>
+    </ul>
+    <ul id="dataUl2" class="dataUl"></ul>
+  </div>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  function scrollBar(parentId1, parentId2, childClass) {
+    // 子元素高度
+    var liHeight = document.getElementById(parentId1).getElementsByClassName(childClass)[0].offsetHeight;
+    // 父元素1
+    var scrollDiv1 = document.getElementById(parentId1);
+    // 父元素2
+    var scrollDiv2 = document.getElementById(parentId2);
+    // 子元素高度
+    var length = document.getElementById(parentId1).getElementsByClassName(childClass).length;
+    // 父元素1 高度
+    var scrollDiv2Top = document.getElementById(parentId1).offsetHeight;
+    // 复制克隆div2 == div1 视觉欺骗
+    document.getElementById(parentId2).innerHTML = document.getElementById(parentId1).innerHTML;
+    // 设置父元素2的定位高度
+    document.getElementById(parentId2).style.top = scrollDiv2Top + "px";
+    var i = 1;
+    setInterval(function () {
+      if (i < length + 1) {
+        // 父元素1 滚动 
+        scrollDiv1.style.top = -liHeight * i + "px";
+        // 父元素2 跟着父元素1滚动
+        scrollDiv2.style.top = (scrollDiv2Top + (-liHeight * i)) + "px";
+        i++;
+      } else {
+        // 清0
+        i = 0;
+      }
+    }, 1.5 * 1000)
+  }
+  scrollBar("dataUl1", "dataUl2", "dataUl-item")
+
+</script>
+
+</html>
