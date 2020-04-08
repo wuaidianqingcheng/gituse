@@ -70,9 +70,8 @@
 
 </body>
 <script>
-	 var timer = null;
-  function scrollBar(parentId1, parentId2, childClass) {
-	 
+  var timer = null;
+  function scrollBar(parentId1, parentId2, childClass) { 
     // 子元素高度
     var liHeight = document.getElementById(parentId1).getElementsByClassName(childClass)[0].offsetHeight;
     // 父元素1
@@ -85,7 +84,7 @@
     // var scrollDiv2Top = document.getElementById(parentId1).offsetHeight;
     var scrollDiv2Top =liHeight*length;
 	console.log(scrollDiv2Top);
-	 console.log(liHeight,length)
+	 console.log(liHeight,length);
     // 复制克隆div2 == div1 视觉欺骗
     document.getElementById(parentId2).innerHTML = document.getElementById(parentId1).innerHTML;
     // 设置父元素2的定位高度
@@ -100,7 +99,6 @@
         i++;
       } else {
         // 清0
-		// scrollDiv2.style.top=0+'px';
         i = 0;
 		scrollDiv1.style.top = -liHeight * i + "px";
         // 父元素2 跟着父元素1滚动
@@ -110,8 +108,8 @@
   }
   scrollBar("dataUl1", "dataUl2", "dataUl-item")
 	window.onresize=function(){
-		clearInterval(timer)
-		scrollBar("dataUl1", "dataUl2", "dataUl-item")
+		clearInterval(timer);
+		scrollBar("dataUl1", "dataUl2", "dataUl-item");
 	}
 </script>
 
