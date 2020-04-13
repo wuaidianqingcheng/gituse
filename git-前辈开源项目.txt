@@ -1,3 +1,5 @@
 https://github.com/PanJiaChen/vue-element-admin							vue
 https://github.com/ant-design/ant-design-pro							react		
-https://github.com/zuiidea/antd-admin								react		
+https://github.com/zuiidea/antd-admin								react
+
+whatwg-fetch fetch 开源兼容库
