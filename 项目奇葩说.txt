@@ -90,3 +90,33 @@ css实现
         -ms-user-select:none; 
         user-select:none;
     }
+/**
+   * @param {*} url  请求地址
+   * @param {*} id   下拉区域id
+   * @param {*} tishi 下拉默认日式
+   * @param {*} key  判断选中值
+   * @param {*} typeValue 接口返回option值
+   * @param {*} typeName  返回返回option文本
+   */
+  // 下拉选择回显示
+  function backSelect(url, id, tishi, key, typeValue, typeName) {
+
+    // 人员类型下拉选择
+    $.get(`${url}`, function (res) {
+      var html = ""
+      res.data.forEach(function (item) {
+        html += `<option value="${item[typeValue]}">${item[typeName]}</option>`
+      })
+      $(`#${id}`).html(`<option value="" hidden>${tishi}</option>${html}`);
+      form.render();
+      $(`#${id}`).children("option").each(function () {
+        // 判断需要对那个选项进行回显
+        if (this.value == key) {
+          // 进行回显
+          $(this).attr("selected", "selected");
+          form.render();
+
+        }
+      })
+    })
+  }
