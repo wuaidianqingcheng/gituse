@@ -1,0 +1,44 @@
+#app {
+    #content {
+        width: 100%;
+        height: 100%;
+
+        #header {
+            width: 100%;
+            height: 90px;
+            line-height: 90px;
+            background: gray;
+
+            #time {
+                width: 10%;
+                height: 100%;
+                float: left;
+            }
+
+            #second {
+                width: 10%;
+                height: 100%;
+                float: left;
+            }
+
+            #title {
+                width: 60%;
+                height: 100%;
+                float: left;
+                text-align: center;
+                font-size: 40px;
+                font-family: Georgia, "Times New Roman", Times, serif;
+                color: #fff;
+                letter-spacing: 5px;
+            }
+        }
+
+        #content-bottom {
+            width: 100%;
+            height: calc(100% - 90px);
+        }
+    }
+
+    @media screen and (min-width:1680px) {}
+
+}

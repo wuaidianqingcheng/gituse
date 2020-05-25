@@ -120,3 +120,80 @@ css实现
       })
     })
   }
+
+14：layui 下拉选择 封装
+
+function select(url,id,typeValue,typeName) {
+$.get(url, function (res) {
+        var html = "";
+        res.data.forEach(function (item) {
+            html += `<option value="${item.typeValue}">${item.typeName}</option>`
+            $(`#${id}`).html(`<option value="" hidden>请选择所属场景</option>${html}`)
+            // 选择场景 绑定场景id
+            form.render();
+        })
+    })
+}
+
+15：layui 下拉级联
+// 所属场景下拉框数据绑定
+$.get("/terminal/scene/queryAllList", function (res) {
+var html = "";
+res.data.forEach(function (item) {
+html += `<option value="${item.id}">${item.name}</option>`
+$("#scene").html(`<option value="" hidden></option>${html}`)
+// 选择场景 绑定场景id
+form.render();
+// 级联选择人员类型
+form.on('select(scene)', function (data) {
+$("#peopleType").html("");
+form.render();
+$.get(`/terminal/peopleType/queryListBySceneId?sceneId=${data.value}`, function (res) {
+if (res.data.length == 0) {
+$("#peopleType").html("");
+form.render();
+}
+var html = "";
+res.data.forEach(function (item) {
+html += `<option value="${item.id}">${item.typeName}</option>`
+$("#peopleType").html(`<option value="" hidden></option>${html}`)
+form.render();
+})
+})
+})
+})
+})
+
+16：layui 数据返回提示
+/**
+ * @param {*} code 状态码返回
+ * @param {*} msg 返回提示
+ */
+function submitTS(code, msg) {
+	if (code == 0) {
+		layer.open({
+			type: 1,
+			title: "提示信息",
+			area: ["200px", "150px"],
+			offset: "auto",
+			content: `${msg}`
+		})
+
+		setTimeout(function () {
+			layer.close(layer.index);
+		}, 1000);
+	} else {
+		layer.open({
+			type: 1,
+			title: "提示信息",
+			area: ["200px", "150px"],
+			offset: "auto",
+			content: `${msg}`
+		})
+		setTimeout(function () {
+			layer.close(layer.index);
+		}, 1000);
+	}
+}
+
+17：layui 表单提交刷新页面 return false
