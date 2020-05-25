@@ -1,3 +1,11 @@
+<!--
+ * @Author: WH
+ * @Date: 2020-05-18 14:31:18
+ * @LastEditors: WH
+ * @LastEditTime: 2020-05-25 17:11:09
+ * @Description: file content
+ * @FilePath: \deao_platform\src\views\Home\Home.vue
+--> 
 <template>
   <div id="content" class="content">
     <commonHeader />
@@ -5,7 +13,7 @@
   </div>
 </template>
 <script>
-import { HomeData } from "@httpRequest/axiosAPI.js";
+// import { HomeData } from "@httpRequest/axiosAPI.js";
 import commonHeader from "@components/Header/Header";
 export default {
   name: "Home",
@@ -19,13 +27,13 @@ export default {
   },
   mounted() {
     const $this = this;
-    //  数据请求
-    HomeData({
-      pageNum: 1,
-      pageSize: 10
-    }).then(res => {
-      $this.msg = res.msg;
-    });
+    // //  数据请求
+    // HomeData({
+    //   pageNum: 1,
+    //   pageSize: 10
+    // }).then(res => {
+    //   $this.msg = res.msg;
+    // });
   }
 };
 </script>
