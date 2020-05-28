@@ -1,3 +1,11 @@
+<!--
+ * @Author: WH
+ * @Date: 2020-05-18 14:31:18
+ * @LastEditors: WH
+ * @LastEditTime: 2020-05-26 09:46:45
+ * @Description: file content
+ * @FilePath: \deao_platform\src\components\Header\Header.vue
+--> 
 <template>
   <header id="header">
     <div id="time">123</div>
@@ -15,7 +23,7 @@ export default {
   },
   mounted() {
     const $this = this;
-    $this.title = "公安研判平台";
+    $this.title = "执法监督平台";
   }
 };
 </script>
