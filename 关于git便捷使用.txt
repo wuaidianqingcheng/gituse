@@ -30,5 +30,6 @@ git push origin master
 两种方式 1：初始配置ssh 并不需要输入账号密码
         2：git config --global credential.helper store
         git config --global credential.helper store
+12312323
 
 

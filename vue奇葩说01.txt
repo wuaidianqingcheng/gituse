@@ -1,0 +1,10 @@
+1：element el-menu + rooter 导航条
+使用default-active配置路由激活状态 点击两次样式生效
+:default-active = “$router.path”
+
+2. Failed to mount component: template or render function not defined.
+
+vue 文件 import 默认引入 是引入.vue 文件  如果同一个组件的.vue 文件和.js 文件名字一样就会报错
+两种解决办法
+1.同组件下 vue 和 js 文件 起不同的名字
+2.import 文件时 带.vue 后缀

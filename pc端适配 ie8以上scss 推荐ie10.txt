@@ -1,0 +1,130 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        font-size: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        position: relative;
+        $screenWH: ((width:800, font:10),
+                (width:1024, font:10),
+                (width:1152, font:10),
+                (width:1200, font:11),
+                (width:1280, font:12),
+                (width:1360, font:13),
+                (width:1366, font:13),
+                (width:1400, font:13),
+                (width:1440, font:14),
+                (width:1600, font:14),
+                (width:1680, font:14),
+                (width:1920, font:16));
+
+        $designWidth: 1920;
+        $designHeight: 1080;
+        $designFont: 100;
+
+
+        @function percentWidth($width, $screenWidth) {
+            $percent1: $width/$designWidth;
+            @return $percent1 * $screenWidth * 1px;
+        }
+
+        // @function percentHeight($height, $screenHeight) {
+        //     $percent2: $height/$designHeight;
+        //     @return $percent2 * $screenHeight * 1px;
+        // }
+
+        @function percentFont($font, $screenFont) {
+            $percent2: $font/$designFont;
+            @return $percent2 * $screenFont * 1rem;
+        }
+
+        //     @for $i from 1 through length($screenWH) {
+        //         $item: nth($screenWH, $i);
+
+        //         @media screen and (min-width: map-get($item, width) * 1px) {
+        //             .content {
+        //                 width: percentWidth(200, map-get($item, width));
+        //                 height: 10%;
+        //                 font-size: percentFont(100, map-get($item, font));
+        //                 margin: 0 auto;
+        //                 display: flex;
+        //                 align-items: center;
+        //                 background: red;
+        //                 justify-content: center;
+        //             }
+        //         }
+        //     }
+        // @function px2rem($px, $base-font-size) {
+        //     @if (unitless($px)) {
+        //         //unitless函数判断有无单位，无单位返回true
+        //         @return ($px / $base-font-size)* 1rem;
+        //     }
+
+        //     @else if (unit($px)==em) {
+        //         //函数取出传入参数的单位 px/em/rem..
+        //         @return $px;
+        //     }
+
+        //     @return ($px / $base-font-size) * 1rem;
+        // }
+
+        @for $i from 1 through length($screenWH) {
+            $item: nth($screenWH, $i);
+
+            @media screen and (min-width: map-get($item, width) * 1px) {
+                .content {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    position: relative;
+
+                    .content-top {
+                        width: 100%;
+                        height: percentWidth(100, map-get($item, width));
+                        line-height: percentWidth(100, map-get($item, width));
+                        text-align: center;
+                        font-size: percentWidth(24, map-get($item, width));
+                        color: #000;
+                        background: #cecece;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+
+                    .content-left {
+                        width: percentWidth(600, map-get($item, width));
+                        height: calc(100% - #{percentWidth(100, map-get($item, width))});
+                        background: red;
+                        position: absolute;
+                        top: percentWidth(100, map-get($item, width));
+                        left: 0;
+                    }
+
+                    .content-right {
+                        width: percentWidth(1300, map-get($item, width));
+                        height: calc(100% - #{percentWidth(100, map-get($item, width))});
+                        background: red;
+                        position: absolute;
+                        top: percentWidth(100, map-get($item, width));
+                        right: 0;
+                    }
+
+                }
+
+            }
+        }
+    }
+}
